@@ -1,0 +1,4 @@
+name: sihwar
+version: '${version}'
+main: com.vicious.sihwar.SIHWar
+api-version: '1.20'

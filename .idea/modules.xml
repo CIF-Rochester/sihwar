@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IDEA.sihwar.main.iml" filepath="$PROJECT_DIR$/.idea/modules/IDEA.sihwar.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IDEA.sihwar.test.iml" filepath="$PROJECT_DIR$/.idea/modules/IDEA.sihwar.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.vicious.sihwar.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.vicious.sihwar.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.vicious.sihwar.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.vicious.sihwar.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sihwar.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sihwar.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sihwar.test.iml" filepath="$PROJECT_DIR$/.idea/modules/sihwar.test.iml" />
+    </modules>
+  </component>
+</project>
