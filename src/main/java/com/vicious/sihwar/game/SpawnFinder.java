@@ -32,7 +32,7 @@ public class SpawnFinder {
         double radiansShift = radiansMax/360;
 
         List<Vec2D> out = new ArrayList<>();
-        double shiftRadians = 0;
+        double shiftRadians = Math.random()*radiansMax;
         l1: while(shiftRadians <= radiansMax) {
             for (int i = 0; i < teams; i++) {
                 double r = radiusMax;

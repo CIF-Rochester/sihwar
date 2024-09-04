@@ -45,10 +45,12 @@ public class Templates {
         newTemplate("war",t->{
             t.teamSelector.maxNoTeams=2;
             t.teamSelector.random=false;
+            t.teamSelector.maxTeamSize=-1;
         });
         newTemplate("rwar",t->{
             t.teamSelector.maxNoTeams=2;
             t.teamSelector.random=true;
+            t.teamSelector.maxTeamSize=-1;
         });
         PersistenceHandler.init(Templates.class);
     }

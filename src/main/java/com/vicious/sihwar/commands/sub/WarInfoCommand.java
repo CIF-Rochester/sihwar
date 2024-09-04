@@ -19,7 +19,7 @@ public class WarInfoCommand extends GameCommand {
     @Override
     protected void process(CommandSender sender, String[] args) throws CommandException {
         whenGameLoaded(sender,game->{
-            Component out = Component.text(game.name).color(NamedTextColor.AQUA).decorate(TextDecoration.BOLD);
+            Component out = Component.text(game.name + ": " + game.settings.name).color(NamedTextColor.AQUA).decorate(TextDecoration.BOLD);
             out = out.append(Component.text("\nStage: " + game.getStage().getName()).color(NamedTextColor.DARK_AQUA));
             out = out.append(Component.text("\nTime remaining in stage: " + game.getTimeString()).color(NamedTextColor.DARK_AQUA));
             out = out.append(Component.text("\nWorld Border Shrinking To: " + game.getStage().borderEnd));

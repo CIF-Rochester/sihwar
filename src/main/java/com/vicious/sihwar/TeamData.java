@@ -10,10 +10,7 @@ import com.vicious.viciouslib.persistence.storage.aunotamations.Typing;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -52,9 +49,9 @@ public class TeamData {
 
     public void addPlayer(PlayerData data, GameInstance instance) {
         players.add(data.uuid);
-        if(data.hasTeam()){
-            data.getTeam(instance).removePlayer(data);
-        }
+        data.whenHasTeam(instance,team->{
+            team.removePlayer(data);
+        });
         data.team=name;
         if(leader == null){
             promote(data.getPlayer());
@@ -67,6 +64,7 @@ public class TeamData {
 
     public void removePlayer(PlayerData data) {
         players.remove(data.uuid);
+        data.team="";
     }
 
     public void setName(String name) {
@@ -206,5 +204,23 @@ public class TeamData {
     public void join(PlayerData joiner, GameInstance instance) {
         Announcement.soundless(Component.text(joiner.getName() + " joined the team!")).send(this);
         addPlayer(joiner,instance);
+    }
+
+    public Vec2D calcCenter() {
+        Vec2D out = new Vec2D(0,0);
+        List<OfflinePlayer> players = getPlayers();
+        for (OfflinePlayer player : players) {
+            if(player instanceof Player p){
+                if(p.getGameMode() == GameMode.SURVIVAL) {
+                    Location l = p.getLocation();
+                    if (l.getWorld().getEnvironment() == World.Environment.NETHER) {
+                        out = new Vec2D(out.x + l.getX() / 8, out.y + l.getZ() / 8);
+                    } else {
+                        out = new Vec2D(out.x + l.getX(), out.y + l.getZ());
+                    }
+                }
+            }
+        }
+        return new Vec2D(out.x/players.size(),out.y/players.size());
     }
 }

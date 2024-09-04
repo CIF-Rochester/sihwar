@@ -32,6 +32,7 @@ public class TeamSelector {
 
     public boolean generate(GameInstance instance, boolean unsafe){
         if(random){
+            instance.teams.teams.clear();
             List<Player> players = Util.getRandomizedPlayers();
             List<List<Player>> fractions = Util.fractionate(players,maxTeamSize == -1 ? Integer.MAX_VALUE : maxTeamSize, maxNoTeams == -1 ? Integer.MAX_VALUE : maxNoTeams);
             int n = 0;

@@ -28,6 +28,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class GameInstance implements IPersistent {
+
     public static GameInstance loadPaused(String arg, World world) {
         GameInstance out = new GameInstance(arg,world);
         out.paused=true;
@@ -59,6 +60,19 @@ public class GameInstance implements IPersistent {
         this.name=name;
         this.path="vicious/games/" + name + ".txt";
         this.world=world;
+        load();
+        save();
+        initialize();
+        if(settings.teamSelector.random){
+            genTeams();
+        }
+    }
+
+    public GameInstance(String name, World world, GameTemplate template) {
+        this.name=name;
+        this.path="vicious/games/" + name + ".txt";
+        this.world=world;
+        this.settings=template;
         load();
         save();
         initialize();

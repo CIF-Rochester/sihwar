@@ -5,6 +5,8 @@ public enum GameFlag {
     REVIVE,
     COLLAPSE,
     HASTE,
+    STRENGTH,
+    NIGHTVIS,
     SHRINK,
     FREEZE;
 }

@@ -6,6 +6,7 @@ import com.vicious.sihwar.commands.sub.WarTeamCommand;
 import com.vicious.sihwar.data.GameInstance;
 import com.vicious.sihwar.data.GameStages;
 import com.vicious.sihwar.data.Templates;
+import com.vicious.sihwar.game.FeatureDisabler;
 import com.vicious.sihwar.player.PlayerEventListener;
 import com.vicious.viciouslib.aunotamation.Aunotamation;
 import com.vicious.viciouslib.persistence.vson.SerializationHandler;
@@ -58,6 +59,7 @@ public final class SIHWar extends JavaPlugin {
             whenHasGame(GameInstance::save);
         },WarConfig.saveIntervalSeconds*20L,WarConfig.saveIntervalSeconds*20L);
         Bukkit.getPluginManager().registerEvents(new PlayerEventListener(),this);
+        Bukkit.getPluginManager().registerEvents(new FeatureDisabler(),this);
         CommandMap map = Bukkit.getCommandMap();
         map.register("waradmin","sihwar:waradmin",new WarAdminCommand());
         map.register("warteam","sihwar:warteam",new WarTeamCommand());

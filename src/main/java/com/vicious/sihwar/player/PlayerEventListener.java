@@ -134,7 +134,7 @@ public class PlayerEventListener implements Listener {
                     data.applyState(game,player);
                 }
             }
-            if(game.inSetup() && game.settings.teamSelector.random){
+            if(game.inSetup() && game.settings.teamSelector.random && !data.hasTeam()){
                 game.genTeams();
             }
         });

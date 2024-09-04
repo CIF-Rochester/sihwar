@@ -21,7 +21,7 @@ public class WarConfig {
     @Save(description = "The waiting box.")
     public static SpawnBox spawnBox = new SpawnBox();
     @Save(description = "The edge of player spawns. Keep this as the starting stage world border.")
-    public static int spawnEdge = 3000;
+    public static int spawnEdge = 2300;
 
     public static void init() {
         SIHWar.logger.info("Loading config");

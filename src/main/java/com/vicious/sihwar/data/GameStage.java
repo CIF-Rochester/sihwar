@@ -117,7 +117,13 @@ public class GameStage {
     public void onRespawn(GameInstance instance, PlayerData player){
         player.whenOnline(plr->{
             if(flags.contains(GameFlag.HASTE)){
-                plr.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,(int)instance.period*20,0,false,false,true));
+                plr.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,(int)instance.period*20,1,false,false,true));
+            }
+            if(flags.contains(GameFlag.NIGHTVIS)){
+                plr.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION,(int)instance.period*20,0,false,false,true));
+            }
+            if(flags.contains(GameFlag.STRENGTH)){
+                plr.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,(int)instance.period*20,0,false,false,true));
             }
         });
     }

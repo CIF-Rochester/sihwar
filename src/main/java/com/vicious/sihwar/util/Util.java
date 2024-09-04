@@ -28,8 +28,14 @@ public class Util {
     }
 
     public static <T> List<List<T>> fractionate(List<T> lst, int maxPer, int maxTeams){
+        if(lst.size() == 1){
+            List<List<T>> out = new ArrayList<>();
+            out.add(lst);
+            return out;
+        }
         List<List<T>> out = new ArrayList<>();
-        int maxGroups = Math.min((int)Math.ceil(lst.size()/(float)maxPer),maxTeams);
+        int maxGroups = Math.max((int)Math.ceil(lst.size()/(float)maxPer),maxTeams);
+        maxPer = (int) Math.min(maxPer,Math.ceil(lst.size()/(float)maxGroups));
         for (int i = 0; i < maxGroups; i++) {
             out.add(new ArrayList<>());
         }

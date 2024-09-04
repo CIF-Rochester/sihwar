@@ -7,6 +7,8 @@ import com.vicious.sihwar.commands.CommandException;
 import com.vicious.sihwar.commands.GameCommand;
 import com.vicious.sihwar.commands.GameSetupCommand;
 import com.vicious.sihwar.data.GameInstance;
+import com.vicious.sihwar.data.GameTemplate;
+import com.vicious.sihwar.data.Templates;
 import com.vicious.sihwar.game.SpawnFinder;
 import com.vicious.sihwar.player.PlayerData;
 import com.vicious.sihwar.player.PlayerState;
@@ -53,7 +55,7 @@ public class WarAdminCommand extends GameCommand {
 
     private static class Create extends GameCommand {
         protected Create() {
-            super("create", "Creates a new battle and saves the instance.", "/waradmin create <name> <optional:world>", List.of("create"));
+            super("create", "Creates a new battle and saves the instance.", "/waradmin create <name> <optional:world> <optional:template>", List.of("create"));
         }
 
         @Override
@@ -79,7 +81,15 @@ public class WarAdminCommand extends GameCommand {
                     error(sender,"No such world " + args[1]);
                 }
                 else{
-                    SIHWar.game = new GameInstance(args[0],w);
+                    GameTemplate template = Templates.templates.get("solos");
+                    if(args.length == 3){
+                        template = Templates.templates.get(args[2]);
+                        if(template == null){
+                            error(sender,"No such template: " + args[2]);
+                            return;
+                        }
+                    }
+                    SIHWar.game = new GameInstance(args[0],w,template);
                     success(sender, "Created game " + args[0] + " and set as the current game.");
                     WarConfig.spawnBox.build(w);
                     for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {

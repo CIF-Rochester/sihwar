@@ -70,7 +70,6 @@ public class PlayerData implements Listener {
             p.setFoodLevel(20);
             state = PlayerState.ALIVE;
             p.teleport(pos);
-            System.out.println(instance.stageIndex + " : " + uuid);
             if(instance.stageIndex == 0) {
                 p.setInvulnerable(true);
                 frozen = true;
@@ -153,5 +152,12 @@ public class PlayerData implements Listener {
 
     public boolean isParticipating() {
         return team != null;
+    }
+
+    public void whenHasTeam(GameInstance instance, Consumer<TeamData> data) {
+        TeamData team = instance.teams.getTeam(this.team);
+        if(team != null){
+            data.accept(team);
+        }
     }
 }

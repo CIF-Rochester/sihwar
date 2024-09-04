@@ -22,6 +22,10 @@ public class Overlays {
         o.getScore("Stage Time (Sec)").setScore(0);
         o.getScore("Border Size").setScore(0);
         o.getScore("Border Distance").setScore(0);
+        /*
+        o.getScore("Team Center X").setScore(0);
+        o.getScore("Team Center Z").setScore(0);
+        o.getScore("Dist From TC").setScore(0);*/
 
 
         /*o = scoreboard.registerNewObjective("Border", Criteria.DUMMY, Component.text("Border Position"),RenderType.INTEGER);
@@ -42,12 +46,26 @@ public class Overlays {
         Scoreboard scoreboard = player.getScoreboard();
 
         Objective o = scoreboard.getObjective("info");
-        int size = (int) (instance.world.getWorldBorder().getSize()/2);
-        o.getScore("Border Size").setScore(size);
-        int dist = (int) Math.min(size-Math.abs(player.getX()),size-Math.abs(player.getZ()));
-        o.getScore("Border Distance").setScore(dist);
-        o.getScore("Stage Time (Sec)").setScore(instance.period);
+        if(o != null) {
+            int size = (int) (instance.world.getWorldBorder().getSize() / 2);
+            o.getScore("Border Size").setScore(size);
+            int dist = (int) Math.min(size - Math.abs(player.getX()), size - Math.abs(player.getZ()));
+            o.getScore("Border Distance").setScore(dist);
+            o.getScore("Stage Time (Sec)").setScore(instance.period);
 
-        player.setScoreboard(scoreboard);
+            /*Vec2D vec = instance.playerData.get(player).getTeam(instance).calcCenter();
+
+            if (player.getWorld().getEnvironment() == World.Environment.NETHER) {
+                vec = new Vec2D(vec.x / 8, vec.y / 8);
+            }
+
+            o.getScore("Team Center X").setScore((int) vec.x);
+            o.getScore("Team Center Z").setScore((int) vec.y);
+
+            double x = player.getX()-vec.x;
+            double y = player.getY()-vec.y;
+            o.getScore("Dist From TC").setScore((int) Math.sqrt(x*x+y*y));*/
+            player.setScoreboard(scoreboard);
+        }
     }
 }
